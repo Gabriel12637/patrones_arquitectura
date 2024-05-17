@@ -18,7 +18,7 @@ PATRONES ARQUITECTONICOS MAS CONOCIDOS
 10. ARQUITECTURA HEXAGONAL
 
 
-PATRON DE FLUJO DE TUBERIA
+PATRON DE filtro DE TUBERIA
 
 
  Un "patrón de flujo de tubería" en Python se refiere a un diseño de programación que utiliza una serie de funciones o procesos conectados entre sí mediante tuberías para procesar datos de manera secuencial. Esto se asemeja al flujo de agua a través de una tubería, donde los datos fluyen de una función a otra.
