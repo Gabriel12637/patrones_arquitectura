@@ -21,18 +21,11 @@ PATRONES ARQUITECTONICOS MAS CONOCIDOS
 PATRON DE FLUJO DE TUBERIA
 
 
-Un patrón de filtro de tubería se refiere a un diseño específico utilizado en la fabricación de filtros para tuberías. Estos filtros se utilizan para retener partículas sólidas, sedimentos u otros contaminantes presentes en fluidos que fluyen a través de tuberías.
+ Un "patrón de flujo de tubería" en Python se refiere a un diseño de programación que utiliza una serie de funciones o procesos conectados entre sí mediante tuberías para procesar datos de manera secuencial. Esto se asemeja al flujo de agua a través de una tubería, donde los datos fluyen de una función a otra.
 
-El diseño del filtro de tubería puede variar según el propósito específico y las características del fluido que se está filtrando. Algunos factores a considerar en el diseño incluyen el tamaño de las partículas a filtrar, el flujo del fluido, la presión y la temperatura.
+En Python, este concepto se puede implementar utilizando varias técnicas, como funciones de orden superior, generadores, expresiones lambda y el método pipe en algunas bibliotecas. 
 
-Algunos patrones comunes de filtro de tubería incluyen:
-
-Filtro de malla: Utiliza una malla metálica o de plástico para atrapar partículas sólidas de un cierto tamaño mientras permite que el fluido pase a través de ella.
-
-Filtro de cartucho: Consiste en un cartucho cilíndrico que contiene un medio filtrante, como papel, tela o carbono activado, que retiene las partículas a medida que el fluido pasa a través del cartucho.
-
-
-Estos son solo algunos ejemplos generales, pero hay una amplia variedad de diseños de filtros de tubería disponibles para adaptarse a diferentes aplicaciones y condiciones de filtración. La selección del patrón de filtro adecuado depende de varios factores, incluidos el tamaño de las partículas a filtrar, la capacidad de flujo requerida y las características del fluido. 
+El patrón de flujo de tubería puede volverse más complejo al conectar múltiples funciones de esta manera para realizar operaciones más elaboradas en los datos. Además, bibliotecas como pandas y PySpark proporcionan sus propias implementaciones de patrones de flujo de tubería para el procesamiento de datos más avanzad
   
   # Definición de funciones de filtro
 def filtro_1(datos):
