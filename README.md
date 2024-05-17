@@ -21,41 +21,65 @@ PATRONES ARQUITECTONICOS MAS CONOCIDOS
 PATRON DE filtro DE TUBERIA
 
 
- Un "patrón de flujo de tubería" en Python se refiere a un diseño de programación que utiliza una serie de funciones o procesos conectados entre sí mediante tuberías para procesar datos de manera secuencial. Esto se asemeja al flujo de agua a través de una tubería, donde los datos fluyen de una función a otra.
+ El patrón de filtro de tubería, también conocido como patrón de filtro de tubería y filtro, es un patrón de diseño que se utiliza comúnmente en el desarrollo de software. Este patrón se utiliza para procesar datos secuenciales de manera eficiente y modular, dividiendo el proceso en etapas o filtros que se aplican secuencialmente a los datos.
 
-En Python, este concepto se puede implementar utilizando varias técnicas, como funciones de orden superior, generadores, expresiones lambda y el método pipe en algunas bibliotecas. 
+La idea básica detrás del patrón de filtro de tubería es tener una serie de componentes llamados "filtros", cada uno de los cuales realiza una operación específica en los datos que pasan a través de él. Estos filtros están conectados entre sí formando una tubería, donde la salida de un filtro se convierte en la entrada del siguiente.
 
-El patrón de flujo de tubería puede volverse más complejo al conectar múltiples funciones de esta manera para realizar operaciones más elaboradas en los datos. Además, bibliotecas como pandas y PySpark proporcionan sus propias implementaciones de patrones de flujo de tubería para el procesamiento de datos más avanzad
-  
-  # Definición de funciones de filtro
-def filtro_1(datos):
-    for dato in datos:
-        if dato % 2 == 0:
-            yield dato
+Los principales beneficios de este patrón incluyen:
 
-def filtro_2(datos):
-    for dato in datos:
-        if dato % 3 == 0:
-            yield dato
+Modularidad: Cada filtro es independiente y puede ser reutilizado o modificado sin afectar a otros componentes de la tubería.
 
-# Datos de entrada
-datos_entrada = range(1, 21)  # Números del 1 al 20
+Facilidad de mantenimiento: Los cambios en el proceso de filtrado se pueden realizar fácilmente añadiendo, eliminando o modificando filtros individuales.
 
-# Aplicar los filtros secuencialmente
-datos_filtrados_1 = filtro_1(datos_entrada)
-datos_filtrados_2 = filtro_2(datos_filtrados_1)
+Escalabilidad: Se pueden agregar nuevos filtros para ampliar la funcionalidad sin necesidad de reescribir el código existente.
 
-# Imprimir resultados
-print("Datos filtrados por filtro 1:")
-for dato in datos_filtrados_1:
-    print(dato)
+Por ejemplo, en el procesamiento de imágenes, se podría implementar una tubería de filtro para realizar operaciones como ajuste de contraste, filtrado de ruido y detección de bordes, donde cada filtro realizaría una de estas tareas en la imagen.
 
-print("\nDatos filtrados por filtro 2:")
-for dato in datos_filtrados_2:
-    print(dato)
+La implementación del patrón de filtro de tubería puede variar según el lenguaje de programación y el contexto específico del problema a resolver, pero en general, implica la creación de clases o funciones para cada filtro y una forma de conectarlos entre sí para formar la tubería.
 
- El patrón de filtro de tubería en Python se utiliza para procesar datos de manera modular y eficiente, especialmente en situaciones que involucran grandes volúmenes de datos o flujos continuos de información. Puede aplicarse en casos como el procesamiento de datos en tiempo real, análisis de registros, procesamiento de secuencias de datos, transformación de datos en procesos ETL, y procesamiento de flujos de datos en redes de comunicación. Este patrón permite aplicar filtros y transformaciones de manera secuencial a los datos, facilitando la modularidad y la escalabilidad en el desarrollo de sistemas y aplicaciones.
 
+
+class FiltroBase:
+    def __init__(self):
+        pass
+    
+    def aplicar(self, datos):
+        raise NotImplementedError()
+
+class FiltroEliminarCaracteresEspeciales(FiltroBase):
+    def aplicar(self, datos):
+        return ''.join(c for c in datos if c.isalnum() or c.isspace())
+
+class FiltroConvertirMinusculas(FiltroBase):
+    def aplicar(self, datos):
+        return datos.lower()
+
+class FiltroEliminarPalabrasVacias(FiltroBase):
+    def __init__(self, palabras_vacias):
+        self.palabras_vacias = palabras_vacias
+    
+    def aplicar(self, datos):
+        return ' '.join(word for word in datos.split() if word.lower() not in self.palabras_vacias)
+
+def aplicar_filtro_tuberia(datos, filtros):
+    resultado = datos
+    for filtro in filtros:
+        resultado = filtro.aplicar(resultado)
+    return resultado
+
+texto = "¡Hola, mundo! Este es un ejemplo de texto. Contiene palabras vacías como 'es' y 'un'."
+filtros = [
+    FiltroEliminarCaracteresEspeciales(),
+    FiltroConvertirMinusculas(),
+    FiltroEliminarPalabrasVacias(['es', 'un'])
+]
+resultado = aplicar_filtro_tuberia(texto, filtros)
+print(resultado)
+
+
+
+
+El patrón de filtro de tubería es un concepto de diseño de software más que una herramienta o tecnología específica, por lo que es utilizado por empresas en una variedad de sectores y contextos de desarrollo de software. Aquí hay algunas empresas y organizaciones que podrían estar utilizando este patrón:
 
 1. Empresas tecnológicas: Gigantes como Google, Facebook y Amazon lo emplean para procesar grandes volúmenes de datos en tiempo real, como la personalización de contenido, análisis de datos de usuarios y procesamiento de transacciones.
 
